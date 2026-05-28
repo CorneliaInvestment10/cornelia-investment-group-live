@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cornelia Investment Group</title><link rel="stylesheet" href="styles.css"></head><body><div class="page homepage"><img class="page-img" src="assets/homepage-premium-locked.png" alt="Cornelia Investment Group home page">
+<!-- Main navigation -->
+<a class="hotspot" aria-label="Solutions" href="solutions.html" style="left:37.2%;top:1.4%;width:10.5%;height:3.8%"></a>
+<a class="hotspot" aria-label="Industries" href="industries.html" style="left:49.3%;top:1.4%;width:12.2%;height:3.8%"></a>
+<a class="hotspot" aria-label="About Us" href="about.html" style="left:62.8%;top:1.4%;width:12%;height:3.8%"></a>
+<a class="hotspot" aria-label="Explore Options" href="apply.html" style="left:79.2%;top:1.35%;width:18.4%;height:4.3%"></a>
+<a class="hotspot" aria-label="Home" href="index.html" style="left:1%;top:0%;width:28%;height:5.4%"></a>
+<!-- Hero industry tiles -->
+<a class="hotspot" aria-label="Construction" href="construction.html" style="left:2.2%;top:38.6%;width:14%;height:6.6%"></a>
+<a class="hotspot" aria-label="Manufacturing" href="manufacturing.html" style="left:16.3%;top:38.6%;width:14.3%;height:6.6%"></a>
+<a class="hotspot" aria-label="Healthcare and Medical Practices" href="healthcare.html" style="left:30.9%;top:38.6%;width:14.2%;height:6.6%"></a>
+<!-- Lead form aligned over the right information box. Background text is covered as soon as client types. -->
+<form class="lead-form" id="homeLeadForm">
+<label class="visually-hidden" for="homeFullName">Full Name</label><input id="homeFullName" class="lead-input" name="fullName" autocomplete="name" required style="left:76.8%;top:17.45%;width:18.9%;height:2.35%">
+<label class="visually-hidden" for="homeBusinessName">Business Name</label><input id="homeBusinessName" class="lead-input" name="businessName" autocomplete="organization" required style="left:76.8%;top:20.31%;width:18.9%;height:2.35%">
+<label class="visually-hidden" for="homeAnnualRevenue">Annual Revenue</label><select id="homeAnnualRevenue" class="lead-select" name="annualRevenue" required style="left:76.8%;top:23.18%;width:18.9%;height:2.35%"><option value=""></option><option>$1M to $2M</option><option>$2M to $5M</option><option>$5M+</option></select>
+<label class="visually-hidden" for="homeIndustry">Industry</label><select id="homeIndustry" class="lead-select" name="industry" required style="left:76.8%;top:26.04%;width:18.9%;height:2.35%"><option value=""></option><option>Construction & Infrastructure</option><option>Manufacturing & Industrial</option><option>Healthcare & Medical Practices</option></select>
+<label class="visually-hidden" for="homeFundingNeed">Funding Need</label><select id="homeFundingNeed" class="lead-select" name="fundingNeed" required style="left:76.8%;top:28.91%;width:18.9%;height:2.35%"><option value=""></option><option>Growth Capital</option><option>Term Loan</option><option>Line of Credit</option><option>Cash Flow Financing</option><option>Equipment Financing</option></select>
+<label class="visually-hidden" for="homePhone">Phone Number</label><input id="homePhone" class="lead-input" name="phone" autocomplete="tel" required style="left:76.8%;top:31.77%;width:18.9%;height:2.35%">
+<label class="visually-hidden" for="homeEmail">Email Address</label><input id="homeEmail" class="lead-input" name="email" type="email" autocomplete="email" required style="left:76.8%;top:34.64%;width:18.9%;height:2.35%">
+<button class="hotspot" aria-label="Continue to Explore Options" type="submit" style="left:66.8%;top:39.06%;width:30.0%;height:2.9%"></button>
+</form>
+<!-- Bottom Learn More cards. Entire cards plus visible Learn More buttons route to the selected industry page. -->
+<a class="hotspot" aria-label="Learn more about Construction" href="construction.html" style="left:1.8%;top:80.55%;width:31.2%;height:13.3%"></a>
+<a class="hotspot" aria-label="Learn more about Manufacturing" href="manufacturing.html" style="left:34.1%;top:80.55%;width:31.2%;height:13.3%"></a>
+<a class="hotspot" aria-label="Learn more about Healthcare and Medical Practices" href="healthcare.html" style="left:66.4%;top:80.55%;width:31.7%;height:13.3%"></a>
+<a class="hotspot" aria-label="Construction Learn More Button" href="construction.html" style="left:10%;top:92.4%;width:14.5%;height:2.9%"></a>
+<a class="hotspot" aria-label="Manufacturing Learn More Button" href="manufacturing.html" style="left:42.1%;top:92.4%;width:14.7%;height:2.9%"></a>
+<a class="hotspot" aria-label="Healthcare Learn More Button" href="healthcare.html" style="left:74.8%;top:92.4%;width:14.7%;height:2.9%"></a>
+</div><div class="modal" id="consentModal"><div class="modal-card"><h2>Marketing Consent</h2><p>Before continuing to the partner financing page, please confirm that you agree to be contacted about financing options, follow-up information, and marketing updates.</p><label><input type="checkbox" id="marketingConsent"> I agree to receive follow-up communication and marketing information from Cornelia Investment Group. I understand I can unsubscribe later.</label><button type="button" onclick="completeLead()">Continue to Partner Financing Page</button></div></div><script src="config.js"></script><script src="script.js"></script></body></html>
