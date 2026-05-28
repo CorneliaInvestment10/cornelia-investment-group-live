@@ -1,0 +1,23 @@
+*{box-sizing:border-box}body{margin:0;background:#07111d;font-family:Arial,Helvetica,sans-serif}.page{position:relative;width:100%;max-width:1194px;margin:0 auto;background:#fff}.page-img{display:block;width:100%;height:auto}.hotspot{position:absolute;display:block;background:rgba(255,255,255,0);border:0;text-decoration:none;cursor:pointer;z-index:20}
+.lead-form{position:absolute;inset:0;z-index:15}.lead-input,.lead-select,.lead-textarea{position:absolute;background:#162f50;border:0;color:#fff;font-size:16px;outline:0;padding:10px;border-radius:3px;z-index:25}
+.lead-input::placeholder,.lead-textarea::placeholder{color:#dbe7f4;opacity:1}.lead-input.light,.lead-select.light,.lead-textarea.light{color:#07111d;background:#fff;border:1px solid #d0d0d0}.lead-select{appearance:none}.lead-textarea{resize:none}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;align-items:center;justify-content:center;padding:20px}.modal-card{max-width:560px;background:#fff;border-radius:14px;padding:24px;color:#07111d;box-shadow:0 20px 60px rgba(0,0,0,.35)}.modal-card h2{margin:0 0 10px}.modal-card label{display:flex;gap:10px;line-height:1.4}.modal-card button{margin-top:18px;width:100%;border:0;border-radius:8px;background:#f7aa20;color:#07111d;font-weight:800;padding:14px;font-size:16px;cursor:pointer}.admin{max-width:1100px;margin:0 auto;background:#fff;min-height:100vh;padding:30px;font-family:Arial}.admin h1{color:#07111d}.admin table{width:100%;border-collapse:collapse;margin-top:20px}.admin th,.admin td{border:1px solid #ccc;padding:8px;font-size:13px;text-align:left}.admin button,.admin a.button{display:inline-block;margin:8px 8px 8px 0;padding:10px 14px;background:#07111d;color:#fff;text-decoration:none;border-radius:6px;border:0;cursor:pointer}.admin .gold{background:#f7aa20;color:#07111d;font-weight:800}@media(max-width:700px){.lead-input,.lead-select,.lead-textarea{font-size:11px;padding:4px}.modal-card{font-size:14px}}
+
+button.hotspot{z-index:35}
+a.hotspot{z-index:30}
+
+/* Homepage form field fix: covers the static text baked into the preview image when users type. */
+.lead-input,.lead-select,.lead-textarea{
+  background-color:#17385f !important;
+  box-shadow: inset 0 0 0 9999px #17385f !important;
+  opacity:1 !important;
+  color:#fff !important;
+}
+.lead-input::placeholder,.lead-textarea::placeholder{
+  color:transparent !important;
+  opacity:0 !important;
+}
+.lead-input:focus,.lead-select:focus,.lead-textarea:focus{
+  background-color:#17385f !important;
+  box-shadow: inset 0 0 0 9999px #17385f !important;
+}
+.industry-card-link{z-index:45;}
