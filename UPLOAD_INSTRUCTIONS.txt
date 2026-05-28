@@ -1,0 +1,16 @@
+UPLOAD THIS WHOLE FOLDER CONTENT TO GITHUB ROOT.
+
+Root files to replace:
+- index.html
+- solutions.html
+- construction.html
+- styles.css
+- script.js
+
+Assets folder files to add inside GitHub /assets:
+- homepage-premium-locked.png
+- solutions-premium-locked.png
+- construction-premium-locked.png
+
+Keep existing config.js unchanged.
+Do not delete old JPEGs yet.
