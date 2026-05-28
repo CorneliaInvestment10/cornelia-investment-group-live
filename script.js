@@ -1,6 +1,13 @@
 (function(){
   function partnerUrl(){return (window.NBC_TRACKABLE_LINK && String(window.NBC_TRACKABLE_LINK).trim()) || 'apply.html';}
   function getForm(){return document.getElementById('homeLeadForm') || document.querySelector('.lead-form');}
+  function updateFieldState(el){ if(!el) return; var has = String(el.value||'').trim().length>0; el.classList.toggle('has-value', has); }
+  document.querySelectorAll('.lead-input,.lead-select').forEach(function(el){
+    updateFieldState(el);
+    el.addEventListener('input', function(){updateFieldState(el);});
+    el.addEventListener('change', function(){updateFieldState(el);});
+    el.addEventListener('blur', function(){updateFieldState(el);});
+  });
   var form=getForm();
   if(form){
     form.addEventListener('submit',function(e){
