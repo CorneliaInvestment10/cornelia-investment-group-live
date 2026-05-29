@@ -74,4 +74,20 @@ opacity:1!important;
 .lead-textarea:focus{
 color:#ffffff!important;
 -webkit-text-fill-color:#ffffff!important;
+}/* Apply page form typed text visibility fix */
+input,
+textarea,
+select,
+input:focus,
+textarea:focus,
+select:focus {
+  color: #07111f !important;
+  -webkit-text-fill-color: #07111f !important;
+  caret-color: #07111f !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(7,17,31,.55) !important;
+  opacity: 1 !important;
 }
