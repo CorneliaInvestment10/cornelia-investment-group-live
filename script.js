@@ -1,5 +1,5 @@
 (function(){
-  const GOOGLE_SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxANCb36uNhFqZcVjXvz0sb_8dU4aT5eO2fWLRvfc8esffNTyEyDM7OeViGHUahv1aE/exec";
+  const GOOGLE_SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxwUq_-XVh7iB6rLfjGVJrKcJcneYaIexFFDinPz-r2y5XkOS6VFvhsPacNkJ4T0LYb/exec";
   const DEFAULT_NBC_URL = "https://www.nationalbusinesscapital.com/apply-now/?ref=140622073002";
   let pendingCorneliaLead = null;
 
@@ -7,30 +7,57 @@
     return (window.NBC_TRACKABLE_LINK && String(window.NBC_TRACKABLE_LINK).trim()) || DEFAULT_NBC_URL;
   }
 
-  function valByIdOrName(id, name){
-    const byId = id ? document.getElementById(id) : null;
-    if (byId) return byId.value || "";
-    const byName = name ? document.querySelector('[name="' + name + '"]') : null;
-    return byName ? (byName.value || "") : "";
+  function currentPage(){
+    return window.location.pathname.split('/').pop() || 'index.html';
+  }
+
+  function val(selector){
+    const el = document.querySelector(selector);
+    return el ? (el.value || '').trim() : '';
+  }
+
+  function valueFrom(form, names){
+    for(const name of names){
+      const byName = form ? form.querySelector('[name="' + name + '"]') : null;
+      if(byName && String(byName.value || '').trim()) return String(byName.value || '').trim();
+      const byId = document.getElementById(name);
+      if(byId && String(byId.value || '').trim()) return String(byId.value || '').trim();
+    }
+    return '';
   }
 
   function collectLead(form){
-    const page = window.location.pathname.split('/').pop() || 'index.html';
-    const formData = new FormData(form);
-    return {
-      fullName: valByIdOrName('homeFullName','fullName') || formData.get('fullName') || '',
-      businessName: valByIdOrName('homeBusinessName','businessName') || formData.get('businessName') || '',
-      annualRevenue: valByIdOrName('homeAnnualRevenue','annualRevenue') || formData.get('annualRevenue') || '',
-      industry: valByIdOrName('homeIndustry','industry') || formData.get('industry') || '',
-      fundingNeed: valByIdOrName('homeFundingNeed','fundingNeed') || formData.get('fundingNeed') || '',
-      phone: valByIdOrName('homePhone','phone') || formData.get('phone') || '',
-      email: valByIdOrName('homeEmail','email') || formData.get('email') || '',
-      source: page,
-      pageSource: page,
+    const page = currentPage();
+    const isApplyPage = page.toLowerCase().includes('apply') || document.body.classList.contains('apply-page');
+
+    const lead = {
+      fullName: valueFrom(form, ['fullName','name','homeFullName','appFullName','full_name']),
+      title: valueFrom(form, ['title','jobTitle','job_title','businessTitle','position']),
+      businessName: valueFrom(form, ['businessName','company','companyName','homeBusinessName','appBusinessName','business_name']),
+      annualRevenue: valueFrom(form, ['annualRevenue','revenue','homeAnnualRevenue','appAnnualRevenue','annual_revenue']),
+      industry: valueFrom(form, ['industry','homeIndustry','appIndustry']),
+      fundingNeed: valueFrom(form, ['fundingNeed','financingNeed','message','comments','purpose','homeFundingNeed','appFundingNeed','fundingPurpose','financingPurpose']),
+      phone: valueFrom(form, ['phone','phoneNumber','homePhone','appPhone','telephone']),
+      email: valueFrom(form, ['email','emailAddress','homeEmail','appEmail']),
+      timeInBusiness: valueFrom(form, ['timeInBusiness','time_business','yearsInBusiness','businessAge']),
+      creditScore: valueFrom(form, ['creditScore','fico','ficoScore']),
+      comments: valueFrom(form, ['comments','message','notes','additionalInfo']),
+      source: isApplyPage ? 'apply.html' : page,
+      pageSource: isApplyPage ? 'apply.html' : page,
       marketingConsent: 'Yes',
       referralLink: partnerUrl(),
       createdAt: new Date().toISOString()
     };
+
+    // Extra fallback for simple form fields not covered above.
+    if(form){
+      const fd = new FormData(form);
+      fd.forEach(function(value, key){
+        if(lead[key] === undefined || lead[key] === '') lead[key] = value;
+      });
+    }
+
+    return lead;
   }
 
   function saveLeadToLocalBackup(lead){
@@ -47,6 +74,7 @@
       return fetch(GOOGLE_SHEETS_WEB_APP_URL, {
         method: 'POST',
         mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(lead)
       });
     }catch(err){
@@ -68,6 +96,16 @@
     document.querySelectorAll('.lead-input,.lead-select,.lead-textarea,input,select,textarea').forEach(updateFieldState);
   }
 
+  function showConsentModal(){
+    const modal = document.getElementById('consentModal');
+    if(modal){
+      modal.style.display = 'flex';
+      modal.classList.add('show');
+      return true;
+    }
+    return false;
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     document.querySelectorAll('.lead-input,.lead-select,.lead-textarea,input,select,textarea').forEach(function(el){
       updateFieldState(el);
@@ -80,13 +118,9 @@
       form.addEventListener('submit', function(e){
         e.preventDefault();
         pendingCorneliaLead = collectLead(form);
-        const modal = document.getElementById('consentModal');
-        if(modal){
-          modal.style.display = 'flex';
-          modal.classList.add('show');
-        }else{
+        if(!showConsentModal()){
           sendLeadToGoogleSheet(pendingCorneliaLead).finally(redirectToPartner);
-          setTimeout(redirectToPartner, 1500);
+          setTimeout(redirectToPartner, 1800);
         }
       });
     });
@@ -101,19 +135,27 @@
       alert('Please confirm consent before continuing.');
       return;
     }
+
     if(!pendingCorneliaLead){
       const form = document.querySelector('form.lead-form, form');
-      pendingCorneliaLead = form ? collectLead(form) : {source: window.location.pathname.split('/').pop() || 'website', pageSource: window.location.pathname.split('/').pop() || 'website', referralLink: partnerUrl(), marketingConsent: 'Yes', createdAt: new Date().toISOString()};
+      pendingCorneliaLead = form ? collectLead(form) : {
+        source: currentPage(),
+        pageSource: currentPage(),
+        referralLink: partnerUrl(),
+        marketingConsent: 'Yes',
+        createdAt: new Date().toISOString()
+      };
     }
-    pendingCorneliaLead.marketingConsent = consent && consent.checked ? 'Yes' : 'Yes';
+
+    pendingCorneliaLead.marketingConsent = 'Yes';
     sendLeadToGoogleSheet(pendingCorneliaLead).finally(redirectToPartner);
-    setTimeout(redirectToPartner, 1500);
+    setTimeout(redirectToPartner, 1800);
   };
 
   window.goPartner = function(e){
     if(e) e.preventDefault();
-    const current = window.location.pathname.split('/').pop() || 'index.html';
-    if(current === 'apply.html'){
+    const page = currentPage();
+    if(page === 'apply.html'){
       const form = document.getElementById('leadForm') || document.getElementById('homeLeadForm') || document.querySelector('form.lead-form, form');
       if(form){
         form.scrollIntoView({behavior:'smooth', block:'center'});
