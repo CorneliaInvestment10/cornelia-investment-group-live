@@ -173,30 +173,3 @@ body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:focus {
   box-shadow: 0 0 0 1000px #ffffff inset !important;
   caret-color: #07111f !important;
 }
-/* FORCE ALL LEAD FORM BOXES TO DARK PREMIUM STYLE */
-.lead-input,
-.lead-select,
-.lead-textarea {
-  background: rgba(8, 26, 55, 0.82) !important;
-  border: 1.5px solid rgba(255,255,255,.30) !important;
-  border-radius: 10px !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  padding: 14px 18px !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-.lead-input:focus,
-.lead-select:focus,
-.lead-textarea:focus {
-  background: rgba(8, 26, 55, 0.92) !important;
-  border: 1.5px solid rgba(255, 210, 31, .60) !important;
-}
-
-.lead-input::placeholder,
-.lead-textarea::placeholder {
-  color: rgba(255,255,255,.60) !important;
-  opacity: 1 !important;
-}
-
