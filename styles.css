@@ -17,15 +17,15 @@ button.hotspot { appearance: none !important; -webkit-appearance: none !importan
   box-sizing:border-box!important;
 }
 .lead-input:not(.light),.lead-select:not(.light),.lead-textarea:not(.light){
-  background:rgba(4,16,32,.08)!important;
+  background:transparent!important;
   color:transparent!important;
   border:0!important;
 }
 .lead-input:not(.light):focus,.lead-input:not(.light).has-value,
 .lead-select:not(.light):focus,.lead-select:not(.light).has-value,
 .lead-textarea:not(.light):focus,.lead-textarea:not(.light).has-value{
-  background:rgba(4,16,32,.78)!important;
-  color:#fff!important;
+  background:transparent!important;
+  color:#000!important;
   border:0!important;
 }
 .lead-input.light,.lead-select.light,.lead-textarea.light{
