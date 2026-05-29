@@ -56,7 +56,8 @@ select:-webkit-autofill:focus{
   -webkit-box-shadow:0 0 0 1000px #fff inset!important;
   box-shadow:0 0 0 1000px #fff inset!important;
   caret-color:#07111d!important;
-}
+}select.home-wide-field:focus,select.home-wide-field.has-value{color:#ffffff!important;}
+.lead-input,.lead-input:focus,.lead-input:not(:placeholder-shown),.lead-input:-webkit-autofill,.lead-input:-webkit-autofill:hover,.lead-input:-webkit-autofill:focus,.lead-input:-webkit-autofill:active{-webkit-text-fill-color:#ffffff!important;color:#ffffff!important;background-color:rgba(10,35,75,.88)!important;box-shadow:0 0 0 1000px rgba(10,35,75,.88) inset!important;caret-color:#ffffff!important;}
 
 /* Final homepage form usability fix: entire left label + field row is clickable while keeping the locked image look. */
 .home-wide-field{background:rgba(4,16,32,0.01)!important;color:transparent!important;border:0!important;box-shadow:none!important;}
