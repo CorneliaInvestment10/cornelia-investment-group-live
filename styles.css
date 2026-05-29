@@ -91,3 +91,86 @@ textarea::placeholder {
   color: rgba(7,17,31,.55) !important;
   opacity: 1 !important;
 }
+/* FINAL FORM TEXT VISIBILITY FIX - paste at the very bottom of styles.css */
+
+/* Homepage dark form */
+#homeLeadForm .lead-input,
+#homeLeadForm .lead-select,
+#homeLeadForm .lead-textarea,
+#homeLeadForm input,
+#homeLeadForm select,
+#homeLeadForm textarea {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background-color: rgba(10, 35, 75, 0.88) !important;
+  caret-color: #ffffff !important;
+}
+
+#homeLeadForm .lead-input::placeholder,
+#homeLeadForm .lead-textarea::placeholder,
+#homeLeadForm input::placeholder,
+#homeLeadForm textarea::placeholder {
+  color: rgba(255,255,255,.55) !important;
+  -webkit-text-fill-color: rgba(255,255,255,.55) !important;
+  opacity: 1 !important;
+}
+
+#homeLeadForm select option,
+#homeLeadForm .lead-select option {
+  color: #07111f !important;
+  -webkit-text-fill-color: #07111f !important;
+  background: #ffffff !important;
+}
+
+#homeLeadForm input:-webkit-autofill,
+#homeLeadForm input:-webkit-autofill:hover,
+#homeLeadForm input:-webkit-autofill:focus,
+#homeLeadForm textarea:-webkit-autofill,
+#homeLeadForm textarea:-webkit-autofill:hover,
+#homeLeadForm textarea:-webkit-autofill:focus,
+#homeLeadForm select:-webkit-autofill,
+#homeLeadForm select:-webkit-autofill:hover,
+#homeLeadForm select:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  box-shadow: 0 0 0 1000px rgba(10, 35, 75, 0.88) inset !important;
+  caret-color: #ffffff !important;
+}
+
+/* Explore Options / Apply page light form */
+body:not(.home) .apply-form input,
+body:not(.home) .apply-form textarea,
+body:not(.home) .apply-form select,
+body:not(.home) form:not(#homeLeadForm) input,
+body:not(.home) form:not(#homeLeadForm) textarea,
+body:not(.home) form:not(#homeLeadForm) select {
+  color: #07111f !important;
+  -webkit-text-fill-color: #07111f !important;
+  caret-color: #07111f !important;
+}
+
+body:not(.home) .apply-form input::placeholder,
+body:not(.home) .apply-form textarea::placeholder,
+body:not(.home) form:not(#homeLeadForm) input::placeholder,
+body:not(.home) form:not(#homeLeadForm) textarea::placeholder {
+  color: rgba(7,17,31,.55) !important;
+  -webkit-text-fill-color: rgba(7,17,31,.55) !important;
+  opacity: 1 !important;
+}
+
+body:not(.home) .apply-form input:-webkit-autofill,
+body:not(.home) .apply-form input:-webkit-autofill:hover,
+body:not(.home) .apply-form input:-webkit-autofill:focus,
+body:not(.home) .apply-form textarea:-webkit-autofill,
+body:not(.home) .apply-form textarea:-webkit-autofill:hover,
+body:not(.home) .apply-form textarea:-webkit-autofill:focus,
+body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill,
+body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill:hover,
+body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill:focus,
+body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill,
+body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:hover,
+body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #07111f !important;
+  box-shadow: 0 0 0 1000px #ffffff inset !important;
+  caret-color: #07111f !important;
+}
+
