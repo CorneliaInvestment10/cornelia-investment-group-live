@@ -173,4 +173,46 @@ body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:focus {
   box-shadow: 0 0 0 1000px #ffffff inset !important;
   caret-color: #07111f !important;
 }
+/* FINAL HOMEPAGE FORM STYLE FIX */
+
+#homeLeadForm .lead-input,
+#homeLeadForm .lead-select,
+#homeLeadForm .lead-textarea,
+#homeLeadForm input,
+#homeLeadForm select,
+#homeLeadForm textarea {
+
+  background: rgba(8, 26, 55, 0.82) !important;
+  border: 1.5px solid rgba(255,255,255,.30) !important;
+  border-radius: 10px !important;
+
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff !important;
+
+  padding: 14px 18px !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Placeholder text */
+#homeLeadForm input::placeholder,
+#homeLeadForm textarea::placeholder {
+  color: rgba(255,255,255,.60) !important;
+  opacity: 1 !important;
+}
+
+/* Focus state */
+#homeLeadForm input:focus,
+#homeLeadForm textarea:focus,
+#homeLeadForm select:focus {
+  background: rgba(8, 26, 55, 0.92) !important;
+  border: 1.5px solid rgba(255, 210, 31, .60) !important;
+}
+
+/* Dropdown options */
+#homeLeadForm select option {
+  background: #ffffff !important;
+  color: #07111f !important;
+}
 
