@@ -58,40 +58,9 @@ select:-webkit-autofill:focus{
   caret-color:#07111d!important;
 }
 
-
-/* HOME PAGE FINAL FIELD ALIGNMENT FIX */
-.homepage .lead-input,
-.homepage .lead-select {
-  background: rgba(4,16,32,.22) !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  color: transparent !important;
-  border-radius: 6px !important;
-}
-.homepage .lead-input:focus,
-.homepage .lead-input.has-value,
-.homepage .lead-select:focus,
-.homepage .lead-select.has-value {
-  background: #071629 !important;
-  color: #ffffff !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-.homepage .lead-input::placeholder,
-.homepage .lead-select::placeholder {
-  color: transparent !important;
-  opacity: 0 !important;
-}
-.homepage input:-webkit-autofill,
-.homepage input:-webkit-autofill:hover,
-.homepage input:-webkit-autofill:focus,
-.homepage select:-webkit-autofill,
-.homepage select:-webkit-autofill:hover,
-.homepage select:-webkit-autofill:focus {
-  -webkit-text-fill-color:#ffffff!important;
-  -webkit-box-shadow:0 0 0 1000px #071629 inset!important;
-  box-shadow:0 0 0 1000px #071629 inset!important;
-  caret-color:#ffffff!important;
-}
+/* Final homepage form usability fix: entire left label + field row is clickable while keeping the locked image look. */
+.home-wide-field{background:rgba(4,16,32,0.01)!important;color:transparent!important;border:0!important;box-shadow:none!important;}
+.home-wide-field:focus,.home-wide-field.has-value{background:rgba(19,62,120,.88)!important;color:#fff!important;border:1px solid rgba(255,255,255,.18)!important;box-shadow:none!important;}
+.home-wide-field::placeholder{color:transparent!important;}
+select.home-wide-field{color:transparent!important;}
+select.home-wide-field:focus,select.home-wide-field.has-value{color:#fff!important;}
