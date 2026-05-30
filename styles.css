@@ -1,252 +1,151 @@
-*{box-sizing:border-box}html,body{margin:0;padding:0;background:#061120;font-family:Arial,Helvetica,sans-serif}.page{position:relative;width:100%;max-width:1536px;margin:0 auto;background:#061120}.page-img{display:block;width:100%;height:auto}.hotspot{position:absolute;display:block;text-decoration:none;background:rgba(255,255,255,0)!important;border:0!important;box-shadow:none!important;outline:none!important;cursor:pointer;z-index:30}.hotspot:focus,.hotspot:active,.hotspot:hover{outline:none!important;border:0!important;box-shadow:none!important;background:rgba(255,255,255,0)!important}.lead-form{position:absolute;inset:0;width:100%;height:100%;z-index:20;pointer-events:none}.lead-input,.lead-select,.lead-textarea{position:absolute;z-index:35;pointer-events:auto;border:0!important;border-radius:6px;background:rgba(4,16,32,.42);color:transparent;font-size:clamp(10px,1.05vw,16px);padding:0 .7%;outline:none!important;box-shadow:none!important;appearance:auto}.lead-textarea{resize:none;padding-top:.7%}.lead-input:focus,.lead-input.has-value,.lead-select:focus,.lead-select.has-value,.lead-textarea:focus,.lead-textarea.has-value{background:rgba(4,16,32,.92);color:#fff;border:1px solid rgba(255,255,255,.18)!important;box-shadow:none!important}.lead-input.light,.lead-select.light,.lead-textarea.light{background:rgba(255,255,255,0);color:transparent;border:0!important}.lead-input.light:focus,.lead-input.light.has-value,.lead-select.light:focus,.lead-select.light.has-value,.lead-textarea.light:focus,.lead-textarea.light.has-value{background:rgba(255,255,255,.96)!important;color:#07111d!important;border:1px solid #c9d0d8!important;box-shadow:none!important}.lead-input::placeholder,.lead-textarea::placeholder{color:transparent!important}.lead-select option{background:#fff;color:#07111d}.lead-form button.hotspot{pointer-events:auto;background:transparent!important;border:0!important;outline:none!important;box-shadow:none!important}.lead-input:-webkit-autofill,.lead-input:-webkit-autofill:hover,.lead-input:-webkit-autofill:focus,.lead-textarea:-webkit-autofill,.lead-textarea:-webkit-autofill:hover,.lead-textarea:-webkit-autofill:focus,.lead-select:-webkit-autofill,.lead-select:-webkit-autofill:hover,.lead-select:-webkit-autofill:focus{-webkit-text-fill-color:#07111d!important;-webkit-box-shadow:0 0 0 1000px rgba(255,255,255,.96) inset!important;transition:background-color 9999s ease-in-out 0s!important}.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:1000;align-items:center;justify-content:center;padding:20px}.modal-card{max-width:560px;background:#081629;color:#fff;border:1px solid #d8a02c;border-radius:14px;padding:26px;box-shadow:0 20px 60px rgba(0,0,0,.45)}.modal-card h2{margin:0 0 12px;color:#f2b32b}.modal-card p{line-height:1.45}.modal-card label{display:block;line-height:1.45;margin:18px 0}.modal-card button{width:100%;border:0;border-radius:8px;background:#f7b72d;color:#07111f;font-weight:800;padding:14px 18px;cursor:pointer}.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}.admin{max-width:1100px;margin:0 auto;background:#fff;min-height:100vh;padding:30px;font-family:Arial}.admin h1{color:#07111d}.admin table{width:100%;border-collapse:collapse;margin-top:20px}.admin th,.admin td{border:1px solid #ccc;padding:8px;font-size:13px;text-align:left}.admin button,.admin a.button{display:inline-block;margin:8px 8px 8px 0;padding:10px 14px;background:#07111d;color:#fff;text-decoration:none;border-radius:6px;border:0;cursor:pointer}.admin .gold{background:#f7aa20;color:#07111d;font-weight:800}@media(max-width:700px){.lead-input,.lead-select,.lead-textarea{font-size:11px;padding:2px 4px}.modal-card{font-size:14px}}
+/* ============================================================
+   CORNELIA INVESTMENT GROUP — styles.css
+   Single authoritative source. No conflicting overrides.
+============================================================ */
 
-/* Final repair overrides: remove visible focus boxes, keep form fields consistent, prevent browser autofill colors */
-.hotspot, .hotspot:visited, .hotspot:link, .hotspot:hover, .hotspot:focus, .hotspot:active, .hotspot:focus-visible,
-button.hotspot, button.hotspot:hover, button.hotspot:focus, button.hotspot:active, button.hotspot:focus-visible {
-  outline: 0 !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  -webkit-tap-highlight-color: transparent !important;
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#061120;font-family:Arial,Helvetica,sans-serif}
+
+/* ── PAGE / IMAGE-MAP LAYOUT ──────────────────────────────── */
+.page{position:relative;width:100%;max-width:1536px;margin:0 auto;background:#061120}
+.page-img{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
+
+/* ── HOTSPOTS ─────────────────────────────────────────────── */
+.hotspot{
+  position:absolute;display:block;text-decoration:none;
+  background:transparent!important;border:0!important;
+  box-shadow:none!important;outline:none!important;
+  cursor:pointer;z-index:30;
+  -webkit-tap-highlight-color:transparent!important;
 }
-button.hotspot { appearance: none !important; -webkit-appearance: none !important; padding: 0 !important; margin: 0 !important; }
-.lead-input,.lead-select,.lead-textarea{
-  outline:0!important;
-  box-shadow:none!important;
-  -webkit-box-shadow:none!important;
-  box-sizing:border-box!important;
+.hotspot:focus,.hotspot:active,.hotspot:hover,.hotspot:focus-visible{
+  outline:none!important;border:0!important;
+  box-shadow:none!important;background:transparent!important;
 }
-.lead-input:not(.light),.lead-select:not(.light),.lead-textarea:not(.light){
-  background:rgba(4,16,32,.08)!important;
-  color:transparent!important;
-  border:0!important;
+button.hotspot{
+  appearance:none!important;-webkit-appearance:none!important;
+  padding:0!important;margin:0!important;
 }
-.lead-input:not(.light):focus,.lead-input:not(.light).has-value,
-.lead-select:not(.light):focus,.lead-select:not(.light).has-value,
-.lead-textarea:not(.light):focus,.lead-textarea:not(.light).has-value{
-  background:rgba(4,16,32,.78)!important;
-  color:#fff!important;
-  border:0!important;
-}
-.lead-input.light,.lead-select.light,.lead-textarea.light{
-  background:rgba(255,255,255,0)!important;
-  color:transparent!important;
-  border:0!important;
-}
-.lead-input.light:focus,.lead-input.light.has-value,
-.lead-select.light:focus,.lead-select.light.has-value,
-.lead-textarea.light:focus,.lead-textarea.light.has-value{
-  background:#fff!important;
-  color:#07111d!important;
-  border:1px solid #c9d0d8!important;
-  box-shadow:none!important;
-}
-.lead-input::placeholder,.lead-textarea::placeholder{color:transparent!important;opacity:0!important;}
-.lead-select option{background:#fff!important;color:#07111d!important;}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus{
-  -webkit-text-fill-color:#07111d!important;
-  -webkit-box-shadow:0 0 0 1000px #fff inset!important;
-  box-shadow:0 0 0 1000px #fff inset!important;
-  caret-color:#07111d!important;
-}select.home-wide-field:focus,select.home-wide-field.has-value{color:#ffffff!important;}
-.lead-input,
-.lead-textarea{
-color:#ffffff!important;
--webkit-text-fill-color:#ffffff!important;
-caret-color:#ffffff!important;
+button.hotspot[type="submit"],
+button.hotspot[type="button"]{
+  z-index:9999!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
 }
 
-.lead-input::placeholder,
-.lead-textarea::placeholder{
-color:rgba(255,255,255,.55)!important;
-opacity:1!important;
+/* ── LEAD FORM CONTAINER ──────────────────────────────────── */
+.lead-form{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  z-index:20;
+  pointer-events:none;   /* form shell is click-through */
+  background:transparent;
+  border:none;margin:0;padding:0;
+}
+.lead-form button.hotspot{
+  pointer-events:auto!important;
+  z-index:9999!important;
 }
 
-.lead-input:focus,
-.lead-textarea:focus{
-color:#ffffff!important;
--webkit-text-fill-color:#ffffff!important;
-}/* Apply page form typed text visibility fix */
-input,
-textarea,
-select,
-input:focus,
-textarea:focus,
-select:focus {
-  color: #07111f !important;
-  -webkit-text-fill-color: #07111f !important;
-  caret-color: #07111f !important;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: rgba(7,17,31,.55) !important;
-  opacity: 1 !important;
-}
-/* FINAL FORM TEXT VISIBILITY FIX - paste at the very bottom of styles.css */
-
-/* Homepage dark form */
-#homeLeadForm .lead-input,
-#homeLeadForm .lead-select,
-#homeLeadForm .lead-textarea,
-#homeLeadForm input,
-#homeLeadForm select,
-#homeLeadForm textarea {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  background-color: rgba(10, 35, 75, 0.88) !important;
-  caret-color: #ffffff !important;
-}
-
-#homeLeadForm .lead-input::placeholder,
-#homeLeadForm .lead-textarea::placeholder,
-#homeLeadForm input::placeholder,
-#homeLeadForm textarea::placeholder {
-  color: rgba(255,255,255,.55) !important;
-  -webkit-text-fill-color: rgba(255,255,255,.55) !important;
-  opacity: 1 !important;
-}
-
-#homeLeadForm select option,
-#homeLeadForm .lead-select option {
-  color: #07111f !important;
-  -webkit-text-fill-color: #07111f !important;
-  background: #ffffff !important;
-}
-
-#homeLeadForm input:-webkit-autofill,
-#homeLeadForm input:-webkit-autofill:hover,
-#homeLeadForm input:-webkit-autofill:focus,
-#homeLeadForm textarea:-webkit-autofill,
-#homeLeadForm textarea:-webkit-autofill:hover,
-#homeLeadForm textarea:-webkit-autofill:focus,
-#homeLeadForm select:-webkit-autofill,
-#homeLeadForm select:-webkit-autofill:hover,
-#homeLeadForm select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #ffffff !important;
-  box-shadow: 0 0 0 1000px rgba(10, 35, 75, 0.88) inset !important;
-  caret-color: #ffffff !important;
-}
-
-/* Explore Options / Apply page light form */
-body:not(.home) .apply-form input,
-body:not(.home) .apply-form textarea,
-body:not(.home) .apply-form select,
-body:not(.home) form:not(#homeLeadForm) input,
-body:not(.home) form:not(#homeLeadForm) textarea,
-body:not(.home) form:not(#homeLeadForm) select {
-  color: #07111f !important;
-  -webkit-text-fill-color: #07111f !important;
-  caret-color: #07111f !important;
-}
-
-body:not(.home) .apply-form input::placeholder,
-body:not(.home) .apply-form textarea::placeholder,
-body:not(.home) form:not(#homeLeadForm) input::placeholder,
-body:not(.home) form:not(#homeLeadForm) textarea::placeholder {
-  color: rgba(7,17,31,.55) !important;
-  -webkit-text-fill-color: rgba(7,17,31,.55) !important;
-  opacity: 1 !important;
-}
-
-body:not(.home) .apply-form input:-webkit-autofill,
-body:not(.home) .apply-form input:-webkit-autofill:hover,
-body:not(.home) .apply-form input:-webkit-autofill:focus,
-body:not(.home) .apply-form textarea:-webkit-autofill,
-body:not(.home) .apply-form textarea:-webkit-autofill:hover,
-body:not(.home) .apply-form textarea:-webkit-autofill:focus,
-body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill,
-body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill:hover,
-body:not(.home) form:not(#homeLeadForm) input:-webkit-autofill:focus,
-body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill,
-body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:hover,
-body:not(.home) form:not(#homeLeadForm) textarea:-webkit-autofill:focus {
-  -webkit-text-fill-color: #07111f !important;
-  box-shadow: 0 0 0 1000px #ffffff inset !important;
-  caret-color: #07111f !important;
-}
-
-/* FINAL OPTION A: Transparent fields with white typed text, no blue boxes */
-.lead-form {
-  pointer-events: none !important;
-}
-
+/* ── FORM FIELDS — base (transparent until touched) ──────── */
 .lead-input,
 .lead-select,
-.lead-textarea,
+.lead-textarea{
+  position:absolute;
+  z-index:35;
+  pointer-events:auto;
+
+  /* Transparent background — locked image shows through */
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  -webkit-box-shadow:none!important;
+  outline:0!important;
+  border-radius:6px;
+
+  /* Text: white so it's visible against the dark image panels */
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  caret-color:#ffffff!important;
+
+  font-size:clamp(10px,1.05vw,16px);
+  font-family:Arial,Helvetica,sans-serif;
+  padding:0 .7%;
+  appearance:auto;
+}
+.lead-textarea{resize:none;padding-top:.7%}
+
+/* Placeholder: invisible — the image itself provides the label text */
+.lead-input::placeholder,
+.lead-textarea::placeholder{
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  opacity:0!important;
+}
+
+/* Focus & has-value: keep same transparent look, text stays white */
+.lead-input:focus,
+.lead-input.has-value,
+.lead-select:focus,
+.lead-select.has-value,
+.lead-textarea:focus,
+.lead-textarea.has-value{
+  background:transparent!important;
+  background-color:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  outline:0!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  caret-color:#ffffff!important;
+}
+
+/* .light variant (right-panel fields on darker image bg) —
+   same behaviour, white text */
 .lead-input.light,
 .lead-select.light,
-.lead-textarea.light,
-.lead-input:not(.light),
-.lead-select:not(.light),
-.lead-textarea:not(.light) {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  outline: 0 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff !important;
-  pointer-events: auto !important;
-  z-index: 35 !important;
+.lead-textarea.light{
+  background:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  caret-color:#ffffff!important;
+  border:0!important;
 }
-
-.lead-input:focus,
-.lead-select:focus,
-.lead-textarea:focus,
-.lead-input.has-value,
-.lead-select.has-value,
-.lead-textarea.has-value,
 .lead-input.light:focus,
-.lead-select.light:focus,
-.lead-textarea.light:focus,
 .lead-input.light.has-value,
+.lead-select.light:focus,
 .lead-select.light.has-value,
-.lead-textarea.light.has-value {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  -webkit-box-shadow: none !important;
-  outline: 0 !important;
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff !important;
+.lead-textarea.light:focus,
+.lead-textarea.light.has-value{
+  background:transparent!important;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  border:0!important;
+  box-shadow:none!important;
 }
 
-.lead-input::placeholder,
-.lead-textarea::placeholder {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  opacity: 0 !important;
+/* home-wide-field inputs (right form panel) */
+.home-wide-field{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  caret-color:#ffffff!important;
+}
+.home-wide-field:focus,
+.home-wide-field.has-value{
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
 }
 
-.lead-select option {
-  background: #ffffff !important;
-  color: #07111f !important;
-  -webkit-text-fill-color: #07111f !important;
+/* Select dropdown options always readable */
+.lead-select option,
+select option{
+  background:#ffffff!important;
+  color:#07111d!important;
+  -webkit-text-fill-color:#07111d!important;
 }
 
-.lead-form button.hotspot,
-button.hotspot {
-  pointer-events: auto !important;
-  z-index: 90 !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  outline: 0 !important;
-}
-
+/* Browser autofill — keep our white text on transparent bg */
 .lead-input:-webkit-autofill,
 .lead-input:-webkit-autofill:hover,
 .lead-input:-webkit-autofill:focus,
@@ -255,15 +154,71 @@ button.hotspot {
 .lead-textarea:-webkit-autofill:focus,
 .lead-select:-webkit-autofill,
 .lead-select:-webkit-autofill:hover,
-.lead-select:-webkit-autofill:focus {
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff !important;
-  transition: background-color 9999s ease-in-out 0s !important;
+.lead-select:-webkit-autofill:focus{
+  -webkit-text-fill-color:#ffffff!important;
+  caret-color:#ffffff!important;
+  /* defeat Chrome's blue autofill background */
+  -webkit-box-shadow:0 0 0 1000px transparent inset!important;
+  box-shadow:0 0 0 1000px transparent inset!important;
+  transition:background-color 9999s ease-in-out 0s!important;
 }
-/* Make homepage continue button clickable */
-button.hotspot[type="button"],
-button.hotspot[type="submit"] {
-  z-index: 9999 !important;
-  pointer-events: auto !important;
-  cursor: pointer !important;
+
+/* ── VISUALLY HIDDEN (screen-reader labels) ───────────────── */
+.visually-hidden{
+  position:absolute!important;
+  height:1px;width:1px;overflow:hidden;
+  clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;
+}
+
+/* ── CONSENT MODAL ────────────────────────────────────────── */
+.modal{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.72);
+  z-index:100000;
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal.show,
+.modal[style*="flex"]{display:flex!important;}
+
+.modal-card{
+  max-width:560px;width:100%;
+  background:#081629;color:#fff;
+  border:1px solid #d8a02c;border-radius:14px;
+  padding:32px 28px;
+  box-shadow:0 20px 60px rgba(0,0,0,.55);
+}
+.modal-card h2{margin:0 0 14px;color:#f2b32b;font-size:22px;}
+.modal-card p{line-height:1.55;color:rgba(255,255,255,.82);margin-bottom:4px;}
+.modal-card label{
+  display:flex;align-items:flex-start;gap:12px;
+  line-height:1.55;margin:20px 0;cursor:pointer;
+  color:rgba(255,255,255,.88);font-size:14px;
+}
+.modal-card label input[type="checkbox"]{
+  width:18px;height:18px;flex-shrink:0;
+  margin-top:2px;accent-color:#C8922A;cursor:pointer;
+}
+.modal-card button{
+  width:100%;border:0;border-radius:8px;
+  background:#f7b72d;color:#07111f;
+  font-weight:800;font-size:15px;letter-spacing:1px;
+  padding:15px 18px;cursor:pointer;
+  transition:background .2s;
+}
+.modal-card button:hover{background:#e5a820;}
+
+/* ── ADMIN PAGE ───────────────────────────────────────────── */
+.admin{max-width:1100px;margin:0 auto;background:#fff;min-height:100vh;padding:30px;font-family:Arial}
+.admin h1{color:#07111d}
+.admin table{width:100%;border-collapse:collapse;margin-top:20px}
+.admin th,.admin td{border:1px solid #ccc;padding:8px;font-size:13px;text-align:left}
+.admin button,.admin a.button{display:inline-block;margin:8px 8px 8px 0;padding:10px 14px;background:#07111d;color:#fff;text-decoration:none;border-radius:6px;border:0;cursor:pointer}
+.admin .gold{background:#f7aa20;color:#07111d;font-weight:800}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:700px){
+  .lead-input,.lead-select,.lead-textarea{font-size:11px;padding:2px 4px}
+  .modal-card{font-size:14px}
 }
