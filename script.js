@@ -1,8 +1,16 @@
 (function(){
-  const GOOGLE_SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxwUq_-XVh7iB6rLfjGVJrKcJcneYaIexFFDinPz-r2y5XkOS6VFvhsPacNkJ4T0LYb/exec";
-  const DEFAULT_NBC_URL = "https://www.nationalbusinesscapital.com/apply-now/?ref=140622073002";
+
+  /* ── TWO SEPARATE GOOGLE SHEETS ENDPOINTS ──────────────────────────────
+     Homepage lead form  → HOMEPAGE_SHEETS_URL
+     Apply page form     → APPLY_SHEETS_URL
+  ──────────────────────────────────────────────────────────────────────── */
+  const HOMEPAGE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxANCb36uNhFqZcVjXvz0sb_8dU4aT5eO2fWLRvfc8esffNTyEyDM7OeViGHUahv1aE/exec";
+  const APPLY_SHEETS_URL    = "https://script.google.com/macros/s/AKfycbxwUq_-XVh7iB6rLfjGVJrKcJcneYaIexFFDinPz-r2y5XkOS6VFvhsPacNkJ4T0LYb/exec";
+  const DEFAULT_NBC_URL     = "https://www.nationalbusinesscapital.com/apply-now/?ref=140622073002";
+
   let pendingCorneliaLead = null;
 
+  /* ── HELPERS ─────────────────────────────────────────────────────────── */
   function partnerUrl(){
     return (window.NBC_TRACKABLE_LINK && String(window.NBC_TRACKABLE_LINK).trim()) || DEFAULT_NBC_URL;
   }
@@ -11,11 +19,17 @@
     return window.location.pathname.split('/').pop() || 'index.html';
   }
 
-  function val(selector){
-    const el = document.querySelector(selector);
-    return el ? (el.value || '').trim() : '';
+  function isApplyPage(){
+    const page = currentPage().toLowerCase();
+    return page.includes('apply') || document.body.classList.contains('apply-page');
   }
 
+  function isHomePage(){
+    const page = currentPage().toLowerCase();
+    return page === 'index.html' || page === '' || page === '/';
+  }
+
+  /* Read a field value by name (inside form first, then by DOM id) */
   function valueFrom(form, names){
     for(const name of names){
       const byName = form ? form.querySelector('[name="' + name + '"]') : null;
@@ -26,40 +40,42 @@
     return '';
   }
 
+  /* ── COLLECT LEAD DATA ───────────────────────────────────────────────── */
   function collectLead(form){
-    const page = currentPage();
-    const isApplyPage = page.toLowerCase().includes('apply') || document.body.classList.contains('apply-page');
-
     const lead = {
-      fullName: valueFrom(form, ['fullName','name','homeFullName','appFullName','full_name']),
-      title: valueFrom(form, ['title','jobTitle','job_title','businessTitle','position']),
-      businessName: valueFrom(form, ['businessName','company','companyName','homeBusinessName','appBusinessName','business_name']),
+      formType:      isApplyPage() ? 'apply' : 'lead',
+      fullName:      valueFrom(form, ['fullName','name','homeFullName','appFullName','full_name']),
+      title:         valueFrom(form, ['title','jobTitle','job_title','businessTitle','position']),
+      businessName:  valueFrom(form, ['businessName','company','companyName','homeBusinessName','appBusinessName','business_name']),
       annualRevenue: valueFrom(form, ['annualRevenue','revenue','homeAnnualRevenue','appAnnualRevenue','annual_revenue']),
-      industry: valueFrom(form, ['industry','homeIndustry','appIndustry']),
-      fundingNeed: valueFrom(form, ['fundingNeed','financingNeed','message','comments','purpose','homeFundingNeed','appFundingNeed','fundingPurpose','financingPurpose']),
-      phone: valueFrom(form, ['phone','phoneNumber','homePhone','appPhone','telephone']),
-      email: valueFrom(form, ['email','emailAddress','homeEmail','appEmail']),
-      timeInBusiness: valueFrom(form, ['timeInBusiness','time_business','yearsInBusiness','businessAge']),
-      creditScore: valueFrom(form, ['creditScore','fico','ficoScore']),
-      comments: valueFrom(form, ['comments','message','notes','additionalInfo']),
-      source: isApplyPage ? 'apply.html' : page,
-      pageSource: isApplyPage ? 'apply.html' : page,
-      marketingConsent: 'Yes',
-      referralLink: partnerUrl(),
-      createdAt: new Date().toISOString()
+      industry:      valueFrom(form, ['industry','homeIndustry','appIndustry']),
+      fundingNeed:   valueFrom(form, ['fundingNeed','financingNeed','loanType','homeFundingNeed','appFundingNeed','fundingPurpose','financingPurpose']),
+      phone:         valueFrom(form, ['phone','phoneNumber','homePhone','appPhone','telephone']),
+      email:         valueFrom(form, ['email','emailAddress','homeEmail','appEmail']),
+      timeInBusiness:valueFrom(form, ['timeInBusiness','time_business','yearsInBusiness','businessAge']),
+      creditScore:   valueFrom(form, ['creditScore','fico','ficoScore']),
+      comments:      valueFrom(form, ['comments','message','notes','additionalInfo','financingNeed']),
+      source:        isApplyPage() ? 'Apply Page' : 'Cornelia Website',
+      pageSource:    currentPage(),
+      marketingConsent:'Yes',
+      referralLink:  partnerUrl(),
+      createdAt:     new Date().toISOString()
     };
 
-    // Extra fallback for simple form fields not covered above.
+    /* Final fallback: walk FormData for any remaining fields */
     if(form){
-      const fd = new FormData(form);
-      fd.forEach(function(value, key){
-        if(lead[key] === undefined || lead[key] === '') lead[key] = value;
-      });
+      try{
+        const fd = new FormData(form);
+        fd.forEach(function(value, key){
+          if(lead[key] === undefined || lead[key] === '') lead[key] = String(value || '').trim();
+        });
+      }catch(e){}
     }
 
     return lead;
   }
 
+  /* ── STORAGE ─────────────────────────────────────────────────────────── */
   function saveLeadToLocalBackup(lead){
     try{
       const leads = JSON.parse(localStorage.getItem('corneliaLeads') || '[]');
@@ -68,14 +84,19 @@
     }catch(err){}
   }
 
+  /* Choose correct Sheet URL based on which page submitted the form */
+  function sheetsUrlForLead(lead){
+    return (lead.formType === 'apply') ? APPLY_SHEETS_URL : HOMEPAGE_SHEETS_URL;
+  }
+
   function sendLeadToGoogleSheet(lead){
     saveLeadToLocalBackup(lead);
     try{
-      return fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+      return fetch(sheetsUrlForLead(lead), {
         method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(lead)
+        mode:   'no-cors',
+        headers:{ 'Content-Type': 'text/plain;charset=utf-8' },
+        body:   JSON.stringify(lead)
       });
     }catch(err){
       return Promise.resolve();
@@ -86,6 +107,7 @@
     window.location.href = partnerUrl();
   }
 
+  /* ── FIELD STATE (has-value class for CSS) ───────────────────────────── */
   function updateFieldState(el){
     if(!el) return;
     const has = String(el.value || '').trim().length > 0;
@@ -93,9 +115,12 @@
   }
 
   function updateAllFields(){
-    document.querySelectorAll('.lead-input,.lead-select,.lead-textarea,input,select,textarea').forEach(updateFieldState);
+    document.querySelectorAll(
+      '.lead-input,.lead-select,.lead-textarea,input,select,textarea'
+    ).forEach(updateFieldState);
   }
 
+  /* ── MODAL ───────────────────────────────────────────────────────────── */
   function showConsentModal(){
     const modal = document.getElementById('consentModal');
     if(modal){
@@ -106,57 +131,76 @@
     return false;
   }
 
+  /* ── DOM READY ───────────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function(){
-    document.querySelectorAll('.lead-input,.lead-select,.lead-textarea,input,select,textarea').forEach(function(el){
+
+    /* Live field-state tracking so has-value applies as user types */
+    document.querySelectorAll(
+      '.lead-input,.lead-select,.lead-textarea,input,select,textarea'
+    ).forEach(function(el){
       updateFieldState(el);
       ['input','change','blur','keyup'].forEach(function(evt){
         el.addEventListener(evt, function(){ updateFieldState(el); });
       });
     });
 
-    document.querySelectorAll('form.lead-form, form').forEach(function(form){
+    /* Form submit → collect lead → show consent modal */
+    document.querySelectorAll('form.lead-form, form#applyLeadForm, form').forEach(function(form){
       form.addEventListener('submit', function(e){
         e.preventDefault();
+        e.stopPropagation();
         pendingCorneliaLead = collectLead(form);
         if(!showConsentModal()){
+          /* No modal present (e.g. apply page) — send and redirect immediately */
           sendLeadToGoogleSheet(pendingCorneliaLead).finally(redirectToPartner);
           setTimeout(redirectToPartner, 1800);
         }
       });
     });
 
+    /* Initialise field states after a short delay (handles pre-filled values) */
     setTimeout(updateAllFields, 250);
     setTimeout(updateAllFields, 1000);
   });
 
+  /* ── completeLead — called by consent modal button ───────────────────── */
   window.completeLead = function(){
     const consent = document.getElementById('marketingConsent');
     if(consent && !consent.checked){
-      alert('Please confirm consent before continuing.');
+      alert('Please check the box to confirm consent before continuing.');
       return;
     }
 
-    if(!pendingCorneliaLead){
-      const form = document.querySelector('form.lead-form, form');
+    /* If pendingCorneliaLead was never set (edge case: user opened modal
+       directly without submitting), read all fields from the DOM right now */
+    if(!pendingCorneliaLead || (!pendingCorneliaLead.email && !pendingCorneliaLead.phone)){
+      const form = document.querySelector('form#applyLeadForm, form.lead-form, form');
       pendingCorneliaLead = form ? collectLead(form) : {
-        source: currentPage(),
-        pageSource: currentPage(),
+        formType:     'lead',
+        source:       'Cornelia Website',
+        pageSource:   currentPage(),
         referralLink: partnerUrl(),
-        marketingConsent: 'Yes',
-        createdAt: new Date().toISOString()
+        marketingConsent:'Yes',
+        createdAt:    new Date().toISOString()
       };
     }
 
     pendingCorneliaLead.marketingConsent = 'Yes';
+
+    /* Send to the correct Google Sheet then redirect to NBC link.
+       setTimeout is a safety net in case fetch hangs. */
     sendLeadToGoogleSheet(pendingCorneliaLead).finally(redirectToPartner);
     setTimeout(redirectToPartner, 1800);
   };
 
+  /* ── goPartner — used by nav Explore Options buttons ────────────────── */
   window.goPartner = function(e){
     if(e) e.preventDefault();
     const page = currentPage();
     if(page === 'apply.html'){
-      const form = document.getElementById('leadForm') || document.getElementById('homeLeadForm') || document.querySelector('form.lead-form, form');
+      const form = document.getElementById('leadForm')
+                || document.getElementById('homeLeadForm')
+                || document.querySelector('form.lead-form, form');
       if(form){
         form.scrollIntoView({behavior:'smooth', block:'center'});
         return false;
@@ -165,4 +209,5 @@
     window.location.href = 'apply.html';
     return false;
   };
+
 })();
