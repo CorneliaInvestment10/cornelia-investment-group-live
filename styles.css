@@ -260,3 +260,10 @@ button.hotspot {
   caret-color: #ffffff !important;
   transition: background-color 9999s ease-in-out 0s !important;
 }
+/* Make homepage continue button clickable */
+button.hotspot[type="button"],
+button.hotspot[type="submit"] {
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
