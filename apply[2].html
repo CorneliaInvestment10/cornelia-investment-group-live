@@ -1,0 +1,128 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Explore Options | Cornelia Investment Group</title><link rel="stylesheet" href="styles.css">
+<style>
+.float-menu-btn{display:none;position:absolute;top:0.5%;right:1%;z-index:9999;background:transparent;border:none;cursor:pointer;padding:8px;}
+.mobile-dropdown{display:none;position:fixed;top:0;left:0;right:0;background:#0d1b2e;z-index:99999;flex-direction:column;border-bottom:3px solid #C8922A;box-shadow:0 4px 20px rgba(0,0,0,0.5);}
+.mobile-dropdown.open{display:flex!important;}
+.mobile-dropdown-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid rgba(200,146,42,0.2);}
+.mobile-dropdown-header a{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-family:"Barlow Condensed",Arial,sans-serif;font-size:16px;font-weight:800;letter-spacing:2px;}
+.mobile-dropdown-header small{display:block;font-size:8px;color:#C8922A;letter-spacing:3px;}
+.mobile-close-btn{background:transparent;border:1.5px solid rgba(200,146,42,0.5);color:#C8922A;font-size:20px;padding:4px 12px;cursor:pointer;border-radius:3px;}
+.mobile-dropdown a.menu-link{display:block;padding:14px 24px;color:rgba(255,255,255,0.85);text-decoration:none;font-family:"Barlow Condensed",Arial,sans-serif;font-size:15px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,0.07);}
+.mobile-dropdown a.menu-cta{display:block;margin:10px 16px 16px;background:#C8922A;color:#0d1b2e;text-align:center;padding:13px;text-decoration:none;font-family:"Barlow Condensed",Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:2px;text-transform:uppercase;border-radius:2px;}
+.mobile-apply-form{display:none;background:#0a1520;padding:28px 20px;}
+.mobile-apply-form h3{font-family:"Barlow Condensed",Arial,sans-serif;font-size:22px;font-weight:900;color:#fff;text-transform:uppercase;margin-bottom:4px;}
+.mobile-apply-form h3 span{color:#C8922A;}
+.mobile-apply-form p{color:rgba(255,255,255,0.55);font-size:13px;margin-bottom:20px;}
+.maf-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.maf-field{margin-bottom:10px;}
+.maf-field input,.maf-field select,.maf-field textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;font-size:14px;border-radius:2px;outline:none;appearance:none;-webkit-appearance:none;-webkit-text-fill-color:#fff;}
+.maf-field input::placeholder{color:rgba(255,255,255,0.4);}
+.maf-field select{color:rgba(255,255,255,0.5);}
+.maf-field textarea{min-height:80px;resize:vertical;color:#fff;-webkit-text-fill-color:#fff;}
+.maf-submit{width:100%;padding:15px;background:#C8922A;color:#0d1b2e;border:none;font-family:"Barlow Condensed",Arial,sans-serif;font-size:15px;font-weight:900;letter-spacing:2px;text-transform:uppercase;cursor:pointer;border-radius:2px;margin-top:8px;}
+@media(max-width:768px){.float-menu-btn{display:block!important;}.mobile-apply-form{display:block!important;}}
+</style>
+</head><body>
+
+<div class="mobile-dropdown" id="mobileDropdown">
+  <div class="mobile-dropdown-header">
+    <a href="index.html"><svg width="28" height="28" viewBox="0 0 38 38" fill="none"><rect x="2" y="22" width="6" height="14" fill="#C8922A"/><rect x="10" y="16" width="6" height="20" fill="#C8922A"/><rect x="18" y="9" width="6" height="27" fill="#C8922A"/><rect x="26" y="2" width="6" height="34" fill="#C8922A"/><polyline points="5,20 13,13 21,7 29,0" stroke="#C8922A" stroke-width="2.2" fill="none" stroke-linecap="round"/><polygon points="29,0 38,0 38,9" fill="#C8922A"/></svg><span>CORNELIA <small>INVESTMENT GROUP</small></span></a>
+    <button class="mobile-close-btn" onclick="closeMobileMenu()">✕</button>
+  </div>
+  <a href="index.html"         class="menu-link">Home</a>
+  <a href="solutions.html"     class="menu-link">Solutions</a>
+  <a href="industries.html"    class="menu-link">Industries</a>
+  <a href="about.html"         class="menu-link">About Us</a>
+  <a href="construction.html"  class="menu-link">Construction</a>
+  <a href="manufacturing.html" class="menu-link">Manufacturing</a>
+  <a href="healthcare.html"    class="menu-link">Healthcare &amp; Medical</a>
+  <a href="apply.html"         class="menu-cta">EXPLORE OPTIONS →</a>
+</div>
+
+<div style="position:relative;">
+<div class="page">
+<img class="page-img page-img-desktop" src="assets/9F342408-D28C-441E-A1B9-5CD13765DE05.jpeg" alt="Explore financing options">
+<img class="page-img page-img-mobile"  src="assets/updatedapplypage.png" alt="Explore financing options">
+<button class="float-menu-btn" onclick="openMobileMenu()" aria-label="Open menu"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="8" width="24" height="2.5" rx="1" fill="#C8922A"/><rect x="4" y="15" width="24" height="2.5" rx="1" fill="#C8922A"/><rect x="4" y="22" width="24" height="2.5" rx="1" fill="#C8922A"/></svg></button>
+<!-- Desktop nav -->
+<a class="hotspot desktop-only" href="solutions.html"  aria-label="Solutions"  style="left:36%;top:1.2%;width:12%;height:4%"></a>
+<a class="hotspot desktop-only" href="industries.html" aria-label="Industries" style="left:50%;top:1.2%;width:12%;height:4%"></a>
+<a class="hotspot desktop-only" href="about.html"      aria-label="About Us"   style="left:63%;top:1.2%;width:12%;height:4%"></a>
+<a class="hotspot desktop-only" href="index.html"      aria-label="Home"       style="left:1%;top:0%;width:28%;height:6%"></a>
+<a class="hotspot desktop-only" href="#applyLeadForm"  aria-label="Explore Options" onclick="document.getElementById('applyLeadForm').scrollIntoView({behavior:'smooth',block:'center'}); return false;" style="left:80%;top:1.2%;width:17%;height:4%"></a>
+<!-- Desktop form -->
+<form class="lead-form desktop-only" id="applyLeadForm">
+<input class="lead-input light" name="fullName"     autocomplete="name"               required style="left:45.75%;top:37.0%;width:23.4%;height:2.35%">
+<input class="lead-input light" name="title"        autocomplete="organization-title"          style="left:71.25%;top:37.0%;width:23.4%;height:2.35%">
+<input class="lead-input light" name="businessName" autocomplete="organization"       required style="left:45.75%;top:41.65%;width:23.4%;height:2.35%">
+<select class="lead-select light" name="industry" required style="left:71.25%;top:41.65%;width:23.4%;height:2.35%"><option value=""></option><option>Construction &amp; Infrastructure</option><option>Manufacturing &amp; Industrial</option><option>Healthcare &amp; Medical Practices</option></select>
+<input class="lead-input light" name="email" type="email" required style="left:45.75%;top:46.2%;width:23.4%;height:2.35%">
+<input class="lead-input light" name="phone" autocomplete="tel" required style="left:71.25%;top:46.2%;width:23.4%;height:2.35%">
+<select class="lead-select light" name="annualRevenue" required style="left:45.75%;top:50.75%;width:48.8%;height:2.35%"><option value=""></option><option>$1M to $2M</option><option>$2M to $5M</option><option>$5M+</option></select>
+<select class="lead-select light" name="timeInBusiness" required style="left:45.75%;top:55.2%;width:23.4%;height:2.35%"><option value=""></option><option>1 to 2 Years</option><option>2 to 5 Years</option><option>5+ Years</option></select>
+<select class="lead-select light" name="creditScore" style="left:71.25%;top:55.2%;width:23.4%;height:2.35%"><option value=""></option><option>620 to 679</option><option>680 to 719</option><option>720+</option></select>
+<textarea class="lead-textarea light" name="financingNeed" required style="left:45.75%;top:59.7%;width:48.8%;height:5.25%"></textarea>
+<button class="hotspot desktop-only" type="submit" aria-label="Submit" style="left:45.5%;top:69.35%;width:49%;height:3.25%"></button>
+</form>
+<!-- Desktop bottom links -->
+<a class="hotspot desktop-only" href="construction.html"  style="left:5%;top:78%;width:27.5%;height:8.6%"></a>
+<a class="hotspot desktop-only" href="manufacturing.html" style="left:36%;top:78%;width:27.5%;height:8.6%"></a>
+<a class="hotspot desktop-only" href="healthcare.html"    style="left:67%;top:78%;width:27.5%;height:8.6%"></a>
+<a class="hotspot desktop-only" href="#applyLeadForm" onclick="document.getElementById('applyLeadForm').scrollIntoView({behavior:'smooth',block:'center'}); return false;" style="left:63.2%;top:89.05%;width:28.5%;height:3.45%"></a>
+</div>
+</div>
+
+<!-- MOBILE FORM -->
+<div class="mobile-apply-form">
+  <h3>TELL US ABOUT<br><span>YOUR BUSINESS</span></h3>
+  <p>All information is kept confidential and secure.</p>
+  <form id="mobileApplyForm" novalidate>
+    <div class="maf-row">
+      <div class="maf-field"><input type="text" name="fullName" placeholder="Full Name" autocomplete="off"></div>
+      <div class="maf-field"><input type="text" name="title" placeholder="Title" autocomplete="off"></div>
+    </div>
+    <div class="maf-row">
+      <div class="maf-field"><input type="text" name="businessName" placeholder="Business Name" autocomplete="off"></div>
+      <div class="maf-field"><select name="industry"><option value="" disabled selected>Industry</option><option>Construction &amp; Infrastructure</option><option>Manufacturing &amp; Industrial</option><option>Healthcare &amp; Medical Practices</option></select></div>
+    </div>
+    <div class="maf-row">
+      <div class="maf-field"><input type="email" name="email" placeholder="Email Address" autocomplete="off"></div>
+      <div class="maf-field"><input type="tel" name="phone" placeholder="Phone Number" autocomplete="off"></div>
+    </div>
+    <div class="maf-field"><select name="annualRevenue"><option value="" disabled selected>Annual Revenue</option><option>$1M to $2M</option><option>$2M to $5M</option><option>$5M+</option></select></div>
+    <div class="maf-row">
+      <div class="maf-field"><select name="timeInBusiness"><option value="" disabled selected>Time in Business</option><option>1 to 2 Years</option><option>2 to 5 Years</option><option>5+ Years</option></select></div>
+      <div class="maf-field"><select name="creditScore"><option value="" disabled selected>Credit Score</option><option>620 to 679</option><option>680 to 719</option><option>720+</option></select></div>
+    </div>
+    <div class="maf-field"><textarea name="financingNeed" placeholder="Briefly describe your financing needs or goals"></textarea></div>
+    <button type="submit" class="maf-submit">SUBMIT &amp; EXPLORE OPTIONS →</button>
+  </form>
+</div>
+
+<div class="modal" id="consentModal"><div class="modal-card"><h2>Marketing Consent</h2><p>Before continuing to the partner financing page, please confirm that you agree to be contacted about financing options, follow-up information, and marketing updates.</p><label><input type="checkbox" id="marketingConsent"> I agree to receive follow-up communication and marketing information from Cornelia Investment Group. I understand I can unsubscribe later.</label><button type="button" onclick="completeLead()">Continue to Partner Financing Page</button></div></div>
+<script src="config.js"></script><script src="script.js"></script>
+<script>
+function openMobileMenu(){document.getElementById('mobileDropdown').classList.add('open');}
+function closeMobileMenu(){document.getElementById('mobileDropdown').classList.remove('open');}
+document.getElementById('mobileApplyForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=this;
+  window.pendingCorneliaLead={
+    formType:'apply',
+    fullName:f.querySelector('[name="fullName"]').value,
+    title:f.querySelector('[name="title"]').value,
+    businessName:f.querySelector('[name="businessName"]').value,
+    industry:f.querySelector('[name="industry"]').value,
+    email:f.querySelector('[name="email"]').value,
+    phone:f.querySelector('[name="phone"]').value,
+    annualRevenue:f.querySelector('[name="annualRevenue"]').value,
+    timeInBusiness:f.querySelector('[name="timeInBusiness"]').value,
+    creditScore:f.querySelector('[name="creditScore"]').value,
+    fundingNeed:f.querySelector('[name="financingNeed"]').value,
+    source:'Apply Page - Mobile',createdAt:new Date().toISOString()
+  };
+  var modal=document.getElementById('consentModal');
+  if(modal){modal.style.display='flex';modal.classList.add('show');}
+});
+</script>
+</body></html>
